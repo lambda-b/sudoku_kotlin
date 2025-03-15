@@ -1,0 +1,39 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "[java]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "editor.codeActionsOnSave": {
+    "source.generate.finalModifiers": "explicit"
+  },
+  "code-runner.executorMap": {
+    "kotlin": "cd $dir && kotlinc-jvm $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar"
+  },
+  "[kotlink]": {
+    "editor.defaultFormatter": "fwcd.kotlin"
+  },
+  "kotlin.externalSources.autoConvertToKotlin": true,
+  "kotlin.inlayHints.chainedHints": true,
+  "kotlin.inlayHints.parameterHints": true,
+  "kotlin.inlayHints.typeHints": true,
+  "kotlin.languageServer.enabled": true,
+  "kotlin.compiler.jvm.target": "21",
+  "java.jdt.ls.java.home": "/usr/lib/jvm/msopenjdk-current",
+  "spring.initializr.defaultLanguage": "Kotlin",
+  "files.trimTrailingWhitespace": true,
+  "workbench.colorTheme": "Ayu Dark Meta",
+  "cSpell.words": ["Korper", "pisanzapra", "springframework"],
+  "cSpell.ignorePaths": [
+    ".devcontainer",
+    "vscode-extension",
+    ".git/{info,lfs,logs,refs,objects}/**",
+    ".git/{index,*refs,*HEAD}",
+    ".vscode",
+    ".vscode-insiders",
+    "build",
+    "gradle*",
+    "build.gradle*"
+  ],
+  "java.configuration.updateBuildConfiguration": "interactive"
+}

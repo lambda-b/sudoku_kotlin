@@ -1,0 +1,55 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
+{
+  "name": "sudoku_backend",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "VARIANT": "1-21-bullseye"
+    }
+  },
+
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "none",
+      "installMaven": "false",
+      "installGradle": "true"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "formulahendry.code-runner",
+        "vmware.vscode-boot-dev-pack",
+        "blacketpaircolordlw.bracket-pair-color-dlw",
+        "donjayamanne.githistory",
+        "eamodio.gitlens",
+        "christian-kohler.path-intellisense",
+        "ionutvmi.path-autocomplete",
+        "mosapride.zenkaku",
+        "ms-azuretools.vscode-docker",
+        "oderwat.indent-rainbow",
+        "streetsidesoftware.code-spell-checker",
+        "shardulm94.trailing-spaces",
+        "esbenp.prettier-vscode",
+        "qcz.text-power-tools",
+        "fwcd.kotlin",
+        "safirm.kotlin-formatter",
+        "scjava.vscode-gradle",
+        "naco-siren.gradle-language"
+      ]
+    }
+  },
+
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [900],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "java -version",
+
+  // Configure tool-specific properties.
+  // "customizations": {},
+
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  "remoteUser": "vscode"
+}
