@@ -11,6 +11,7 @@
     "kotlin": "cd $dir && kotlinc-jvm $fileName -include-runtime -d $fileNameWithoutExt.jar && java -jar $fileNameWithoutExt.jar"
   },
   "[kotlink]": {
+    "editor.formatOnSave": true,
     "editor.defaultFormatter": "fwcd.kotlin"
   },
   "kotlin.externalSources.autoConvertToKotlin": true,
@@ -23,7 +24,7 @@
   "spring.initializr.defaultLanguage": "Kotlin",
   "files.trimTrailingWhitespace": true,
   "workbench.colorTheme": "Ayu Dark Meta",
-  "cSpell.words": ["Korper", "pisanzapra", "springframework"],
+  "cSpell.words": ["dancinglinks", "Korper", "pisanzapra", "springframework"],
   "cSpell.ignorePaths": [
     ".devcontainer",
     "vscode-extension",
