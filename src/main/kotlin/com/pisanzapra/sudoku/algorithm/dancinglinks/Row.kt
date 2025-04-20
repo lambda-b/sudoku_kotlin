@@ -5,8 +5,8 @@ package com.pisanzapra.sudoku.algorithm.dancinglinks
  *
  * This class is used to represent the rows in the matrix.
  */
-class Row : Iterable<LinkNode> {
-  var origin: LinkNode? = null
+class Row<R, C>(val id: R) : Iterable<LinkNode<R, C>> {
+  var origin: LinkNode<R, C>? = null
 
   fun clear() {
     for (node in this) {
@@ -20,17 +20,17 @@ class Row : Iterable<LinkNode> {
     }
   }
 
-  override fun iterator(): Iterator<LinkNode> {
+  override fun iterator(): Iterator<LinkNode<R, C>> {
     return RowIterator(origin)
   }
 
-  class RowIterator(private var current: LinkNode?) : Iterator<LinkNode> {
+  class RowIterator<R, C>(private var current: LinkNode<R, C>?) : Iterator<LinkNode<R, C>> {
 
     override fun hasNext(): Boolean {
       return current != null && current!!.right != current
     }
 
-    override fun next(): LinkNode {
+    override fun next(): LinkNode<R, C> {
       val next = current
       current = current!!.right
       return next!!

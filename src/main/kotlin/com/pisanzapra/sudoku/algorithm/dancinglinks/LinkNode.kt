@@ -6,15 +6,15 @@ package com.pisanzapra.sudoku.algorithm.dancinglinks
  * This class is used to represent the nodes in the columns and rows of the matrix used by the
  * Dancing Links algorithm.
  */
-class LinkNode private constructor(val row: Row, val column: Column) {
-  var left: LinkNode = this
-  var right: LinkNode = this
-  var up: LinkNode = this
-  var down: LinkNode = this
+class LinkNode<R, C> private constructor(val row: Row<R, C>, val column: Column<R, C>) {
+  var left: LinkNode<R, C> = this
+  var right: LinkNode<R, C> = this
+  var up: LinkNode<R, C> = this
+  var down: LinkNode<R, C> = this
 
   companion object {
-    fun create(row: Row, column: Column): LinkNode {
-      val node = LinkNode(row, column)
+    fun <R, C> create(row: Row<R, C>, column: Column<R, C>): LinkNode<R, C> {
+      val node = LinkNode<R, C>(row, column)
       node.restoreVertical()
       node.restoreHorizontal()
       return node
