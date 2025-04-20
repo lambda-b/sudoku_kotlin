@@ -4,9 +4,10 @@ import com.pisanzapra.sudoku.algorithm.dancinglinks.Row
 
 class Matrix<R, C>(private val headers: MutableSet<Column<R, C>>) {
 
+  val solutions = mutableListOf<List<Row<R, C>>>()
+
   /**
-   * 解として選択された行を引数とし、関連するノードを削除します。
-   * 削除したノードを後の復元のために返します。
+   * 解として選択された行を引数とし、関連するノードを削除します。 削除したノードを後の復元のために返します。
    * @param selected 選択された行
    * @return 削除したノードのリスト
    */
@@ -43,34 +44,44 @@ class Matrix<R, C>(private val headers: MutableSet<Column<R, C>>) {
    * @param solution 現在仮定している解の部分
    * @returns 得られた解
    */
-  fun solveExactCover(solution: ArrayDeque<Row<R, C>>): Sequence<List<Row<R, C>>> = sequence {
+  private fun solveInternal(solution: ArrayDeque<Row<R, C>>) {
     if (headers.isEmpty()) {
-      yield(solution.toList())
+      solutions.add(solution.toList())
     } else {
       val minCol = headers.minBy { it.size() }
       for (node in minCol) {
         solution.add(node.row)
         val restorationsList = select(node.row)
-        yieldAll(solveExactCover(solution))
+        solveInternal(solution)
         deselect(restorationsList)
         solution.removeLast()
       }
     }
   }
 
+  fun solveExactCover(solution: ArrayDeque<Row<R, C>>): List<Row<R, C>>? {
+    solveInternal(solution)
+    if (solutions.size > 1) {
+      throw IllegalStateException("Multiple solutions found: ${solutions.size}")
+    }
+    return solutions.singleOrNull()
+  }
+
   /**
    * Restores
    * @param column
    */
-  private static class Restores<R, C>(val column: Column<R, C>) : Iterable<LinkNode<R, C>> {
-    private val restores = mutableListOf<LinkNode<R, C>>()
+  companion object {
+    class Restores<R, C>(val column: Column<R, C>) : Iterable<LinkNode<R, C>> {
+      private val restores = mutableListOf<LinkNode<R, C>>()
 
-    fun add(node: LinkNode<R, C>) {
-      restores.add(node)
-    }
+      fun add(node: LinkNode<R, C>) {
+        restores.add(node)
+      }
 
-    override fun iterator(): Iterator<LinkNode<R, C>> {
-      return restores.iterator()
+      override fun iterator(): Iterator<LinkNode<R, C>> {
+        return restores.iterator()
+      }
     }
   }
 }
